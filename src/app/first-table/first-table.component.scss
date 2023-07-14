@@ -128,10 +128,6 @@
 .container {
     border: 1px inset black;
     padding: 20px;
-    font-family: 'Nunito', sans-serif;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Raleway', sans-serif;
 }
 
 tbody tr td button {
@@ -196,4 +192,38 @@ button.active {
         top: 11px;
         font-size: 30px;
     }
+}
+
+::ng-deep .mat-form-field-infix {
+    display: flex !important;
+}
+
+.mat-form-field {
+    display: inline-block;
+    width: 100%;
+    border: 1px solid rgb(162, 162, 162);
+    border-radius: 5px;
+    padding-left: 15px;
+    height: 40px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    height: 0px !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding: 0px !important;
+}
+
+.mat-date-range-input {
+    display: block;
+    width: 100%;
+}
+
+.mat-datepicker-toggle,
+.mat-datepicker-content .mat-calendar-next-button,
+.mat-datepicker-content .mat-calendar-previous-button {
+    color: rgba(0, 0, 0, .54);
+    position: relative;
+    bottom: 18px;
 }

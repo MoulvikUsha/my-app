@@ -105,7 +105,7 @@ export class FirstTableComponent implements OnInit {
   generateRandomDates() {
     for (let i = 0; i < 200; i++) {
       setTimeout(() => {
-        this.collection.forEach((element: any) => {
+        this.collection!.forEach((element: any) => {
           this.randomDate = this.getRandomDate();
           const currentDate = moment(this.randomDate).format('DD/MM/YYYY');
           element.date = currentDate;
