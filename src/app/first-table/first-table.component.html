@@ -1,0 +1,76 @@
+<div class="container mt-3">
+    <div class="dataTable">
+        <div class="header">
+            <div class="row">
+                <div class="col-sm-3">
+                    <input class="form-control" type="search" placeholder="Search from Data List"
+                        [(ngModel)]="searchText" (input)="performFilter(searchText)">
+                </div>
+                <div class="col-sm-5">
+                    <div class="chips">
+                        <button class="btn btn-light true" [class.active]="button1Active"
+                            (click)="activateButton(true)">True</button>
+                        <button class="btn btn-light false" [class.active]="button2Active"
+                            (click)="activateButton(false)">False</button>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field>
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input matStartDate placeholder="Start date">
+                            <input matEndDate placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" (click)="sortTable('id')">
+                        ID
+                        <i class="material-icons">
+                            {{ getSortIcon('id') }}
+                        </i>
+                    </th>
+                    <th scope="col" (click)="sortTable('title')">
+                        Title
+                        <i class="material-icons">
+                            {{ getSortIcon('title') }}
+                        </i>
+                    </th>
+                    <th scope="col">Completed or Not</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <tr *ngFor="let item of collection | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" cdkDrag>
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.completed}}</td>
+                    <td>{{item.date}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="paginator">
+            <div class="row">
+                <div class="col-sm-10">
+                    <pagination-controls (pageChange)="p = $event" class="pagination"></pagination-controls>
+                </div>
+                <div class="col-sm-2 select">
+                    <span class="material-symbols-outlined">arrow_drop_down</span>
+                    <select name="" id="" class="form-control values" (change)="onSelectChange($event.target)">
+                        <option value="10">10 per page</option>
+                        <option value="50">50 per page</option>
+                        <option value="100">100 per page</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

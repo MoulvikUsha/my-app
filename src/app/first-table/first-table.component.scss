@@ -1,0 +1,198 @@
+.example-container {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.example-list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.example-box {
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+    border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+.previous,
+.next {
+    border: 1px solid black;
+}
+
+.material-icons {
+    float: right;
+}
+
+/* Customize the pagination container */
+.ngx-pagination {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Customize the pagination links */
+:host ::ng-deep .ngx-pagination a {
+    margin: 0 4px !important;
+    padding: 6px 10px !important;
+    background-color: #f2f2f2 !important;
+    color: #333 !important;
+    border-radius: 3px !important;
+    text-decoration: none !important;
+    transition: background-color 0.3s ease !important;
+}
+
+:host ::ng-deep.ngx-pagination a:hover {
+    background-color: #ddd !important;
+}
+
+/* Customize the active page link */
+:host ::ng-deep.ngx-pagination .current {
+    background-color: #007bff !important;
+    color: #fff !important;
+}
+
+/* Customize the previous and next buttons */
+:host ::ng-deep.ngx-pagination .previous,
+.ngx-pagination .next {
+    margin: 0 4px !important;
+    padding: 6px 10px !important;
+    background-color: #007bff !important;
+    color: #fff !important;
+    border-radius: 3px !important;
+    text-decoration: none !important;
+    transition: background-color 0.3s ease !important;
+}
+
+:host ::ng-deep .ngx-pagination .previous:hover,
+.ngx-pagination .next:hover {
+    background-color: #0056b3 !important;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.paginator[_ngcontent-cnt-c1] {
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.header {
+    border: 1px solid rgb(105, 105, 105);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.container {
+    border: 1px inset black;
+    padding: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Raleway', sans-serif;
+}
+
+tbody tr td button {
+    border-radius: 20px;
+    width: 15%;
+    border: none;
+}
+
+.button-active {
+    background-color: blue;
+    color: white;
+}
+
+.button-inactive {
+    background-color: rgb(211, 211, 211);
+    color: black;
+    border: none;
+}
+
+.true,
+.false {
+    height: 35px;
+    background-color: #ccc;
+}
+
+button.active {
+    background-color: blue;
+    color: white;
+}
+
+.values {
+    text-align: center;
+    cursor: pointer;
+}
+
+.chips {
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+
+    .true {
+        border-radius: 15px;
+        width: 15%;
+        height: 40px;
+    }
+
+    .false {
+        border-radius: 15px;
+        margin-left: 15px;
+        width: 15%;
+        height: 40px;
+    }
+}
+
+.select {
+    display: flex;
+
+    span {
+        position: relative;
+        left: 35px;
+        top: 11px;
+        font-size: 30px;
+    }
+}
