@@ -2,11 +2,11 @@
     <div class="dataTable">
         <div class="header">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <input class="form-control" type="search" placeholder="Search from Data List"
                         [(ngModel)]="searchText" (input)="performFilter(searchText)">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="chips">
                         <button class="btn btn-light true" [class.active]="button1Active"
                             (click)="activateButton(true)">True</button>

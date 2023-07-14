@@ -171,14 +171,14 @@ button.active {
     .true {
         border-radius: 15px;
         width: 15%;
-        height: 40px;
+        height: 35px;
     }
 
     .false {
         border-radius: 15px;
         margin-left: 15px;
         width: 15%;
-        height: 40px;
+        height: 35px;
     }
 }
 
@@ -225,5 +225,11 @@ button.active {
 .mat-datepicker-content .mat-calendar-previous-button {
     color: rgba(0, 0, 0, .54);
     position: relative;
-    bottom: 18px;
+    bottom: 13px;
+}
+
+::ng-deep .mat-form-field-type-mat-date-range-input .mat-form-field-infix {
+    width: 200px;
+    position: relative;
+    bottom: 5px !important;
 }
