@@ -16,11 +16,17 @@ export class FirstTableComponent implements OnInit {
   itemsPerPage: number = 10;
   sortColumn: any;
   sortDirection: any;
-  newArray: any[] = [];
+  newDateArray: any[] = [];
   button1Active: boolean = false;
   button2Active: boolean = false;
   p: any;
   searchText: any;
+  startDates!: Date;
+  endDates!: Date;
+  firstDate: any;
+  lastDate: any;
+  randomDate: any;
+  isButtonActive: boolean = true;
 
   constructor(private http: HttpClient) { }
 
@@ -44,8 +50,8 @@ export class FirstTableComponent implements OnInit {
   }
 
   // PAGINATION BASED ON ROWS
-  onSelectChange(value: any) {
-    return this.itemsPerPage = value;
+  onSelectChange(event: any) {
+    return this.itemsPerPage = event.value;
   }
 
   //SORTING OF TABLE
@@ -81,26 +87,17 @@ export class FirstTableComponent implements OnInit {
     moveItemInArray(this.collection, event.previousIndex, event.currentIndex);
   }
 
-  // DATA SELECTION
-  activateButton(booleanValue: boolean) {
-    if (booleanValue === true) {
+  // DATA SELECTION on TRUE/FALSE
+  activateButton(booleanValue: any) {
+    if (booleanValue == true) {
       this.button1Active = true;
       this.button2Active = false;
-      this.collection.forEach((element: any) => {
-        if (element.completed == true) {
-          this.newArray.push(element);
-          this.collection = this.newArray;
-        }
-      });
-    } else if (booleanValue === false) {
+      this.collection = this.response.filter((item: any) => item.completed === true);
+    }
+    if (booleanValue == false) {
       this.button1Active = false;
       this.button2Active = true;
-      this.collection.forEach((element: any) => {        
-        if (element.completed == false) {
-          this.newArray.push(element);
-          this.collection = this.newArray;
-        }
-      });
+      this.collection = this.response.filter((item: any) => item.completed === false);
     }
   }
 
@@ -109,8 +106,8 @@ export class FirstTableComponent implements OnInit {
     for (let i = 0; i < 200; i++) {
       setTimeout(() => {
         this.collection.forEach((element: any) => {
-          const randomDate = this.getRandomDate();
-          const currentDate = moment(randomDate).format('DD/MM/YYYY');
+          this.randomDate = this.getRandomDate();
+          const currentDate = moment(this.randomDate).format('DD/MM/YYYY');
           element.date = currentDate;
         });
       }, 110);
@@ -122,4 +119,23 @@ export class FirstTableComponent implements OnInit {
     const randomTimestamp = startDate.getTime() + (Math.random() * (endDate.getTime() - startDate.getTime()));
     return new Date(randomTimestamp);
   }
+
+  // DATE RANGE
+  onDateRangeChange() {
+    this.collection.forEach((element: any) => {
+      const date1 = this.convertToDateObject(element.date);
+      if ((date1 > this.startDates) && (date1 < this.endDates)) {
+        this.newDateArray.push(element)
+        this.collection = this.newDateArray
+      }
+    });
+  }
+  convertToDateObject(dateStr: any): Date {
+    const parts = dateStr.split('/');
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Month is zero-based in JavaScript Date object
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  }
+
 }
