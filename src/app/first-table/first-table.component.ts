@@ -63,16 +63,16 @@ export class FirstTableComponent implements OnInit {
       this.sortColumn = value;
       this.sortDirection = 'ascending';
     }
-    // this.collection.sort((a: { [x: string]: any; }, b: { [x: string]: any; }) => {
-    //   const a_Value = a[value];
-    //   const b_Value = b[value];
+    this.collection.sort((a:any, b:any) => {
+      const a_Value = a[value];
+      const b_Value = b[value];
 
-    //   if (a_Value < b_Value) {
-    //     return this.sortDirection === 'ascending' ? 1 : -1;
-    //   } else if (a_Value > b_Value) {
-    //     return this.sortDirection === 'ascending' ? -1 : 1;
-    //   }
-    // });
+      if (a_Value < b_Value) {
+        return this.sortDirection === 'ascending' ? 1 : -1;
+      } else if (a_Value > b_Value) {
+        return this.sortDirection === 'ascending' ? -1 : 1;
+      }
+    });
   }
   getSortIcon(column: string): string {
     if (this.sortColumn === column) {
