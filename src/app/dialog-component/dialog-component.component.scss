@@ -1,0 +1,72 @@
+.date {
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 5px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0px !important;
+}
+
+.submit {
+    display: flex;
+    margin: auto;
+}
+
+.form-control {
+    height: 50px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-ripple {
+    top: 0;
+    height: 0px !important;
+    overflow: hidden;
+}
+
+::ng-deep .date .mat-datepicker-toggle,
+.mat-datepicker-content .mat-calendar-next-button,
+.mat-datepicker-content .mat-calendar-previous-button {
+    color: rgba(0, 0, 0, .54);
+    position: relative;
+    bottom: 12px;
+}
+
+::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    animation: cdk-text-field-autofill-end 0s 1ms;
+    position: relative;
+    bottom: 10px;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgb(142 226 252);
+    border: 1px solid #1a5c8d;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #1a5c8d;
+}
+
+.pass {
+    display: flex;
+    justify-content: space-around;
+
+    span {
+        position: relative;
+        top: 15px;
+        right: 30px;
+        cursor: pointer;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep .mat-dialog-container {
+    width: 500px;
+}

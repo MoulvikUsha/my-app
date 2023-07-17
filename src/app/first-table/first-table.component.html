@@ -2,11 +2,11 @@
     <div class="dataTable">
         <div class="header">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <input class="form-control" type="search" placeholder="Search from Data List"
                         [(ngModel)]="searchText" (input)="performFilter(searchText)">
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                     <div class="chips">
                         <button class="btn btn-light true" [class.active]="button1Active"
                             (click)="activateButton(true)">True</button>
@@ -25,6 +25,9 @@
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-date-range-picker #picker></mat-date-range-picker>
                     </mat-form-field>
+                </div>
+                <div class="col-sm-2">
+                    <button (click)="openDialog()" class="btn btn-success">Add New Record</button>
                 </div>
             </div>
         </div>

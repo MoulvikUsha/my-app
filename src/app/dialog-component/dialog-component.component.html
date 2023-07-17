@@ -1,0 +1,65 @@
+<div class="totalForm">
+    <h2 class="header">Title Form</h2>
+    <hr>
+    <form [formGroup]="titleForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" formControlName="title" placeholder="Enter Title">
+            <div class="error"
+                *ngIf="titleForm.get('title')?.invalid && (titleForm.get('title')?.dirty || titleForm.get('title')?.touched)">
+                <div *ngIf="titleForm.get('title')?.errors?.required" class="error">Please fill the title</div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <mat-form-field class="form-control date">
+                <input matInput [matDatepicker]="picker" formControlName="date" readonly>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="error"
+                *ngIf="titleForm.get('date')?.invalid && (titleForm.get('date')?.dirty || titleForm.get('date')?.touched)">
+                <div *ngIf="titleForm.get('date')?.errors?.required" class="error">Please fill the date</div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <label for="active">{{activity}}</label>&nbsp;&nbsp;
+            <mat-slide-toggle id="active" formControlName="active" (change)="onToggleChange($event)"></mat-slide-toggle>
+            <div class="error"
+                *ngIf="titleForm.get('active')?.invalid && (titleForm.get('active')?.dirty || titleForm.get('active')?.touched)">
+                Please activate the toggle
+            </div>
+        </div>
+        <br>
+        <div>
+            <label for="active">Email</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Enter Email">
+            <div class="error"
+                *ngIf="titleForm.get('email')?.invalid && (titleForm.get('email')?.dirty || titleForm.get('email')?.touched)">
+                <div *ngIf="titleForm.get('email')?.errors?.required" class="error">Email is required</div>
+                <div *ngIf="titleForm.get('email')?.errors?.email" class="error">Enter a valid email</div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <label for="active">Password</label>
+            <div class="pass">
+                <input type="{{ isPasswordVisible ? 'text' : 'password' }}" class="form-control"
+                    formControlName="password" placeholder="Enter Password">
+                <span class="material-symbols-outlined" (click)="showPassword()" *ngIf="isPasswordVisible == false">visibility</span>
+                <span class="material-symbols-outlined" (click)="showPassword()" *ngIf="isPasswordVisible == true">visibility_off</span>
+            </div>
+            <div class="error"
+                *ngIf="titleForm.get('password')?.invalid && (titleForm.get('password')?.dirty || titleForm.get('password')?.touched)">
+                <div *ngIf="titleForm.get('password')?.errors?.required" class="error">Password is required</div>
+                <div *ngIf="titleForm.get('password')?.errors?.pattern" class="error">Password must contain atleast 1
+                    capital letter, 1 special character and 1 number</div>
+                <div *ngIf="titleForm.get('password')?.errors?.pattern" class="error">Password must contain atleast 8 characters</div>
+            </div>
+        </div>
+        <hr>
+        <button class="btn btn-success submit" type="submit" [disabled]="titleForm.invalid">Submit</button>
+    </form>
+</div>

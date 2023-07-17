@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponentComponent } from '../dialog-component/dialog-component.component';
 
 @Component({
   selector: 'app-first-table',
@@ -28,7 +30,7 @@ export class FirstTableComponent implements OnInit {
   randomDate: any;
   isButtonActive: boolean = true;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getJson();
@@ -138,4 +140,12 @@ export class FirstTableComponent implements OnInit {
     return new Date(year, month, day);
   }
 
+  // OPEN FORM DIALOG BOX
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponentComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
