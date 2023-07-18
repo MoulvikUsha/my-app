@@ -279,9 +279,3 @@ table {
     color: red;
     font-size: 12px;
 }
-
-::ng-deep .mat-datepicker-content {
-    display: block;
-    border-radius: 4px;
-    z-index: 1000;
-}

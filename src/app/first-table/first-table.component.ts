@@ -127,7 +127,7 @@ export class FirstTableComponent implements OnInit {
       setTimeout(() => {
         this.collection!.forEach((element: any) => {
           this.randomDate = this.getRandomDate();
-          const currentDate = moment(this.randomDate).format('DD/MM/YYYY');
+          const currentDate = moment(this.randomDate).format('DD-MM-YYYY');
           element.date = currentDate;
         });
       }, 110);
@@ -170,7 +170,7 @@ export class FirstTableComponent implements OnInit {
   // EDIT ROWS
   editRow(item: any) {
     this.editForm.patchValue(item);
-    const selectedDate = moment(item.date, 'DD-YY-MMMM').format();
+    const selectedDate = moment(item.date, 'DD-MM-YYYY').format();
     this.editForm.get('date')?.patchValue(selectedDate);
 
     if (item.completed == true) {
