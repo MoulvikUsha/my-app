@@ -227,3 +227,61 @@ button.active {
     position: relative;
     bottom: 5px !important;
 }
+
+.add {
+    display: flex;
+    margin: auto;
+}
+
+table {
+    text-align: center;
+}
+
+.edit {
+    cursor: pointer;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-ripple {
+    top: 0;
+    height: 0px !important;
+    overflow: hidden;
+}
+
+::ng-deep .date .mat-datepicker-toggle,
+.mat-datepicker-content .mat-calendar-next-button,
+.mat-datepicker-content .mat-calendar-previous-button {
+    color: rgba(0, 0, 0, .54);
+    position: relative;
+    bottom: 25px;
+}
+
+::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    animation: cdk-text-field-autofill-end 0s 1ms;
+    position: relative;
+    bottom: 23px;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgb(142 226 252);
+    border: 1px solid #1a5c8d;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #1a5c8d;
+}
+
+.submit {
+    display: flex;
+    margin: auto;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+::ng-deep .mat-datepicker-content {
+    display: block;
+    border-radius: 4px;
+    z-index: 1000;
+}

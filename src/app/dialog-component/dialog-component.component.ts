@@ -31,7 +31,6 @@ export class DialogComponentComponent implements OnInit {
   }
 
   onToggleChange(event: any) {
-    console.log('Toggle changed:', event.checked);
     if (event.checked == true) {
       this.activity = 'Active'
     }

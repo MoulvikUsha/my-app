@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponentComponent } from '../dialog-component/dialog-component.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-first-table',
@@ -29,12 +30,19 @@ export class FirstTableComponent implements OnInit {
   lastDate: any;
   randomDate: any;
   isButtonActive: boolean = true;
-
-  constructor(private http: HttpClient, public dialog: MatDialog) { }
+  editForm!: FormGroup;
+  activity: string = 'Active';
+  
+  constructor(private http: HttpClient, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getJson();
     this.generateRandomDates();
+    this.editForm = this.fb.group({
+      title: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      active: ['']
+    });
   }
 
   getJson() {
@@ -45,8 +53,8 @@ export class FirstTableComponent implements OnInit {
   }
 
   // SEARCHING THE DATA
-  performFilter(searchTerm: string) {
-    this.collection = this.response.filter((item: { title: string; }) =>
+  performFilter(searchTerm: any) {
+    this.collection = this.response.filter((item: any) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
@@ -65,7 +73,7 @@ export class FirstTableComponent implements OnInit {
       this.sortColumn = value;
       this.sortDirection = 'ascending';
     }
-    this.collection.sort((a:any, b:any) => {
+    this.collection.sort((a: any, b: any) => {
       const a_Value = a[value];
       const b_Value = b[value];
 
@@ -83,7 +91,6 @@ export class FirstTableComponent implements OnInit {
     return "arrow_upward";
   }
 
-
   // DRAG AND DROP
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.collection, event.previousIndex, event.currentIndex);
@@ -94,12 +101,23 @@ export class FirstTableComponent implements OnInit {
     if (booleanValue == true) {
       this.button1Active = true;
       this.button2Active = false;
-      this.collection = this.response.filter((item: any) => item.completed === true);
+      if (this.searchText != undefined) {
+        this.collection = this.response.filter((item: any) => item.title.toLowerCase().includes(this.searchText.toLowerCase()) && item.completed === true
+        );
+      }
+      else {
+        this.collection = this.response.filter((item: any) => item.completed === true);
+      }
     }
     if (booleanValue == false) {
       this.button1Active = false;
       this.button2Active = true;
-      this.collection = this.response.filter((item: any) => item.completed === false);
+      if (this.searchText != undefined) {
+        this.collection = this.response.filter((item: any) => item.title.toLowerCase().includes(this.searchText.toLowerCase()) && item.completed === false);
+      }
+      else {
+        this.collection = this.response.filter((item: any) => item.completed === false);
+      }
     }
   }
 
@@ -132,6 +150,7 @@ export class FirstTableComponent implements OnInit {
       }
     });
   }
+
   convertToDateObject(dateStr: any): Date {
     const parts = dateStr.split('/');
     const day = parseInt(parts[0], 10);
@@ -143,9 +162,40 @@ export class FirstTableComponent implements OnInit {
   // OPEN FORM DIALOG BOX
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponentComponent);
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  // EDIT ROWS
+  editRow(item: any) {
+    this.editForm.patchValue(item);
+    const selectedDate = moment(item.date, 'DD-YY-MMMM').format();
+    this.editForm.get('date')?.patchValue(selectedDate);
+
+    if (item.completed == true) {
+      this.activity = 'Active';
+      this.editForm.get('active')?.patchValue(item.completed);
+    }
+    else {
+      this.activity = 'Inactive';
+      this.editForm.get('active')?.patchValue(item.completed);
+    }
+  }
+
+  onToggleChange(event: any) {
+    if (event.checked == true) {
+      this.activity = 'Active'
+    }
+    else {
+      this.activity = 'Inactive'
+    }
+  }
+
+  onSubmit() {
+    if (this.editForm.valid) {
+      console.log('formValue:', this.editForm.value);
+    }
+  }
+
 }

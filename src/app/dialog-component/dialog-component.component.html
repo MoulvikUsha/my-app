@@ -26,7 +26,7 @@
         <br>
         <div>
             <label for="active">{{activity}}</label>&nbsp;&nbsp;
-            <mat-slide-toggle id="active" formControlName="active" (change)="onToggleChange($event)"></mat-slide-toggle>
+            <mat-slide-toggle formControlName="active" (change)="onToggleChange($event)"></mat-slide-toggle>
             <div class="error"
                 *ngIf="titleForm.get('active')?.invalid && (titleForm.get('active')?.dirty || titleForm.get('active')?.touched)">
                 Please activate the toggle
@@ -48,15 +48,14 @@
             <div class="pass">
                 <input type="{{ isPasswordVisible ? 'text' : 'password' }}" class="form-control"
                     formControlName="password" placeholder="Enter Password">
-                <span class="material-symbols-outlined" (click)="showPassword()" *ngIf="isPasswordVisible == false">visibility</span>
-                <span class="material-symbols-outlined" (click)="showPassword()" *ngIf="isPasswordVisible == true">visibility_off</span>
+                <span class="material-symbols-outlined" (click)="showPassword()" *ngIf="isPasswordVisible == false">visibility_off</span>
+                <span class="material-symbols-outlined" (click)="showPassword()" *ngIf="isPasswordVisible == true">visibility</span>
             </div>
+            <pre>Password must contain atleast 8 characters,<br>1 capital letter, 1 special character and 1 number</pre>
             <div class="error"
                 *ngIf="titleForm.get('password')?.invalid && (titleForm.get('password')?.dirty || titleForm.get('password')?.touched)">
                 <div *ngIf="titleForm.get('password')?.errors?.required" class="error">Password is required</div>
-                <div *ngIf="titleForm.get('password')?.errors?.pattern" class="error">Password must contain atleast 1
-                    capital letter, 1 special character and 1 number</div>
-                <div *ngIf="titleForm.get('password')?.errors?.pattern" class="error">Password must contain atleast 8 characters</div>
+                <!-- <div *ngIf="titleForm.get('password')?.errors?.pattern" class="error">Password must contain atleast 8 characters with atleast 1 capital letter, 1 special character and 1 number</div> -->
             </div>
         </div>
         <hr>
