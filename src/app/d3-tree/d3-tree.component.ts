@@ -132,62 +132,64 @@ export class D3TreeComponent implements OnInit {
       .size([this.height, this.width])
       .nodeSize([this.nodeWidth + this.horizontalSeparationBetweenNodes, this.nodeHeight + this.verticalSeparationBetweenNodes])
       .separation((a, b) => {
-        return a.parent == b.parent ? 10 : 5
+        return a.parent == b.parent ? 5 : 5
       });
 
     // Assigns parent, children, height, depth
     this.root = d3.hierarchy(data, (d) => { return d.children; });
+    console.log('this.root:', this.root);
     this.root.x0 = this.height / 2;
     this.root.y0 = 10;
     this.updateChart(this.root);
   }
 
-  // click = (d: any) => {
-  //   console.log('click');
-  //   if (d.children) {
-  //     d._children = d.children;
-  //     d.children = null;
-  //   } else {
-  //     d.children = d._children;
-  //     d._children = null;
-  //   }
-  //   this.updateChart(d);
-  // }
+  click = (d: any) => {
+    if (d.children) {
+      d._children = d.children;
+      d.children = null;
+    } else {
+      d.children = d._children;
+      d._children = null;
+    }
+    this.updateChart(d);
+  }
 
   updateChart(source: any) {
     let i = 0;
     this.treeData = this.tree(this.root);
+    
     this.nodes = this.treeData.descendants();
     this.links = this.treeData.descendants().slice(1);
     this.nodes.forEach((d) => { d.y = d.depth * 180 });
-
-    let node = this.svg.selectAll('g.node')
-      .data(this.nodes, (d: any) => { return d.id || (d.id = ++i); });
-
-    let nodeEnter = node.enter().append('g')
-      .attr('class', 'node')
-      .attr('transform', (d: any) => {
-        return 'translate(' + source.y0 + ',' + source.x0 + ')';
-      })
-    // .on('click', this.click);
+    
+    let node = this.svg
+    .selectAll('g.node')
+    .data(this.nodes, (d: any) => { return d.id || (d.id = ++i); });
+    
+    let nodeEnter = node.enter()
+    .append('g')
+    .attr('class', 'node')
+    .attr('transform', (d: any) => {
+      return 'translate(' + source.y0 + ',' + source.x0 + ')';
+    }).on('click', this.click);
 
     nodeEnter.append('circle')
-      .attr('class', 'node')
-      .attr('r', 1e-6)
-      .style('fill', (d: any) => {
-        return d._children ? 'lightsteelblue' : '#fff';
-      });
+    .attr('class', 'node')
+    .attr('r', 1e-6)
+    .style('fill', (d: any) => {
+      return d._children ? 'lightsteelblue' : '#fff';
+    });
 
     nodeEnter.append('text')
-      .attr('dy', '.35em')
-      .attr('x', (d: any) => {
-        return d.children || d._children ? -13 : 13;
-      })
-      .attr('text-anchor', (d: any) => {
-        return d.children || d._children ? 'end' : 'start';
-      })
-      .style('font', '12px sans-serif')
-      .text((d: any) => { return d.data.name; });
+    .attr('dy', '.35em')
+    .attr('x', (d: any) => {
+      return d.children || d._children ? -13 : 13;
+    })
+    .attr('text-anchor', (d: any) => {
+      return d.children || d._children ? 'end' : 'start';
+    })
+    .style('font', '12px sans-serif')
+    .text((d: any) => { return d.data.name; });
 
     let nodeUpdate = nodeEnter.merge(node);
 
@@ -198,9 +200,9 @@ export class D3TreeComponent implements OnInit {
       });
 
     nodeUpdate.select('circle.node')
-      .attr('r', 10)
-      .style('stroke-width', '3px')
-      .style('stroke', 'steelblue')
+      .attr('r', 8)
+      .style('stroke-width', '2px')
+      .style('stroke', 'orange')
       .style('fill', (d: any) => {
         return d._children ? 'lightsteelblue' : '#fff';
       })
@@ -213,11 +215,11 @@ export class D3TreeComponent implements OnInit {
       })
       .remove();
 
-    nodeExit.select('circle')
-      .attr('r', 1e-6);
+    // nodeExit.select('circle')
+    //   .attr('r', 1e-6);
 
-    nodeExit.select('text')
-      .style('fill-opacity', 1e-6);
+    // nodeExit.select('text')
+    //   .style('fill-opacity', 1e-6);
 
     let link = this.svg.selectAll('path.link')
       .data(this.links, (d: any) => { return d.id; });
@@ -225,7 +227,7 @@ export class D3TreeComponent implements OnInit {
     let linkEnter = link.enter().insert('path', 'g')
       .attr('class', 'link')
       .style('fill', 'none')
-      .style('stroke', '#ccc')
+      .style('stroke', 'steelblue')
       .style('stroke-width', '2px')
       .attr('d', function (d: any) {
         let o = { x: source.x0, y: source.y0 };
@@ -242,7 +244,7 @@ export class D3TreeComponent implements OnInit {
       .duration(this.duration)
       .attr('d', function (d: any) {
         let o = { x: source.x, y: source.y };
-        return diagonal(o, o);
+        // return diagonal(o, o);
       })
       .remove();
 
