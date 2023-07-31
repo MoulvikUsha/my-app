@@ -109,6 +109,7 @@ export class D3TreeComponent implements OnInit {
   selectedNodeByClick: any;
   previousClickedDomNode: any;
   links: any;
+  tooltip: any;
 
   constructor() { }
 
@@ -117,30 +118,29 @@ export class D3TreeComponent implements OnInit {
   }
 
   renderTreeChart() {
-    let element: any = this.chartContainer.nativeElement;
+    let element = this.chartContainer.nativeElement;
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
 
-    this.svg = d3.select(element).append('svg')
+    this.svg = d3.select("#chart").append('svg')
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight)
       .append("g")
-      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
+      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')'); // shifts the trr graph to right
 
     // declares a tree layout and assigns the size
     this.tree = d3.tree()
       .size([this.height, this.width])
-      .nodeSize([this.nodeWidth + this.horizontalSeparationBetweenNodes, this.nodeHeight + this.verticalSeparationBetweenNodes])
       .separation((a, b) => {
-        return a.parent == b.parent ? 5 : 5
+        return a.parent == b.parent ? 10 : 5
       });
 
     // Assigns parent, children, height, depth
     this.root = d3.hierarchy(data, (d) => { return d.children; });
-    console.log('this.root:', this.root);
     this.root.x0 = this.height / 2;
     this.root.y0 = 10;
     this.updateChart(this.root);
+
   }
 
   click = (d: any) => {
@@ -154,42 +154,69 @@ export class D3TreeComponent implements OnInit {
     this.updateChart(d);
   }
 
+  mouseover(d: any) {
+    return this.tooltip.style("visibility", "visible")
+  }
+
+  mouseout(d: any) {
+    return this.tooltip.style("visibility", "hidden")
+  }
+
+  name: any;
+  value: any;
+
   updateChart(source: any) {
     let i = 0;
     this.treeData = this.tree(this.root);
-    
+
     this.nodes = this.treeData.descendants();
     this.links = this.treeData.descendants().slice(1);
     this.nodes.forEach((d) => { d.y = d.depth * 180 });
-    
+    // TOOLTIP
+    this.nodes.filter((d) => {
+      this.name = d.data.name,
+        this.value = d.value
+      this.tooltip = d3.select("#chart")
+        .append("div")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .html(
+          "<table style='font-size: 10px; font-family: sans-serif; width: 100px; height: 30px'>" +
+          "<tr><td>Name: </td><td>" + this.name + "</td></tr>" +
+          "<tr><td>Value: </td><td>" + this.value + "</td></tr>" +
+          "</table>"
+        );
+    });
     let node = this.svg
-    .selectAll('g.node')
-    .data(this.nodes, (d: any) => { return d.id || (d.id = ++i); });
-    
+      .selectAll('g.node')
+      .data(this.nodes, (d: any) => { return d.id || (d.id = ++i); });
+
     let nodeEnter = node.enter()
-    .append('g')
-    .attr('class', 'node')
-    .attr('transform', (d: any) => {
-      return 'translate(' + source.y0 + ',' + source.x0 + ')';
-    }).on('click', this.click);
+      .append('g')
+      .attr('class', 'node')
+      .attr('transform', (d: any) => { return 'translate(' + source.y0 + ',' + source.x0 + ')' })
+      .on('click', this.click)
+      .on("mouseover", () => { return this.tooltip.style("visibility", "visible") })
+      .on("mouseout", () => { return this.tooltip.style("visibility", "hidden") })
 
     nodeEnter.append('circle')
-    .attr('class', 'node')
-    .attr('r', 1e-6)
-    .style('fill', (d: any) => {
-      return d._children ? 'lightsteelblue' : '#fff';
-    });
+      .attr("id", "customTooltip")
+      .attr('class', 'node')
+      .attr('r', 1e-6)
+      .style('fill', (d: any) => {
+        return d._children ? 'lightsteelblue' : '#fff';
+      });
 
     nodeEnter.append('text')
-    .attr('dy', '.35em')
-    .attr('x', (d: any) => {
-      return d.children || d._children ? -13 : 13;
-    })
-    .attr('text-anchor', (d: any) => {
-      return d.children || d._children ? 'end' : 'start';
-    })
-    .style('font', '12px sans-serif')
-    .text((d: any) => { return d.data.name; });
+      .attr('dy', '.35em')
+      .attr('x', (d: any) => {
+        return d.children || d._children ? -13 : 13;
+      })
+      .attr('text-anchor', (d: any) => {
+        return d.children || d._children ? 'end' : 'start';
+      })
+      .style('font', '12px sans-serif')
+      .text((d: any) => { return d.data.name; });
 
     let nodeUpdate = nodeEnter.merge(node);
 
@@ -203,23 +230,19 @@ export class D3TreeComponent implements OnInit {
       .attr('r', 8)
       .style('stroke-width', '2px')
       .style('stroke', 'orange')
-      .style('fill', (d: any) => {
-        return d._children ? 'lightsteelblue' : '#fff';
-      })
+      .style('fill', (d: any) => { return d._children ? 'lightsteelblue' : '#fff' })
       .attr('cursor', 'pointer');
 
     let nodeExit = node.exit().transition()
       .duration(this.duration)
-      .attr('transform', (d: any) => {
-        return 'translate(' + source.y + ',' + source.x + ')';
-      })
+      .attr('transform', (d: any) => { return 'translate(' + source.y + ',' + source.x + ')' })
       .remove();
 
-    // nodeExit.select('circle')
-    //   .attr('r', 1e-6);
+    nodeExit.select('circle')
+      .attr('r', 1e-6);
 
-    // nodeExit.select('text')
-    //   .style('fill-opacity', 1e-6);
+    nodeExit.select('text')
+      .style('fill-opacity', 1e-6);
 
     let link = this.svg.selectAll('path.link')
       .data(this.links, (d: any) => { return d.id; });
@@ -244,7 +267,7 @@ export class D3TreeComponent implements OnInit {
       .duration(this.duration)
       .attr('d', function (d: any) {
         let o = { x: source.x, y: source.y };
-        // return diagonal(o, o);
+        return diagonal(o, o);
       })
       .remove();
 
