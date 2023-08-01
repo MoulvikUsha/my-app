@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogComponentComponent } from './dialog-component/dialog-component.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { D3TreeComponent } from './d3-tree/d3-tree.component';
+import { NgxPopperModule } from 'ngx-popper';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { D3TreeComponent } from './d3-tree/d3-tree.component';
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxPopperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

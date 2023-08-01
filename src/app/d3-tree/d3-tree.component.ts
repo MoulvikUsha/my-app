@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as d3 from 'd3';
+import { TooltipModule } from "ngx-tooltip";
 
 interface HierarchyDatum {
   name: string;
@@ -83,7 +84,7 @@ const data: HierarchyDatum = {
   templateUrl: './d3-tree.component.html',
   styleUrls: ['./d3-tree.component.scss']
 })
-export class D3TreeComponent implements OnInit {
+export class D3TreeComponent implements AfterViewInit {
 
   @ViewChild('chart', { static: true }) private chartContainer: ElementRef | any;
   root: any;
@@ -110,10 +111,19 @@ export class D3TreeComponent implements OnInit {
   previousClickedDomNode: any;
   links: any;
   tooltip: any;
+  nodeName: any;
+  nodeValue: any;
+  connectedNodess: any[] = [];
+  connectedNodes: any;
+  children: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+    // this.renderTreeChart();
+  }
+
+  ngAfterViewInit() {
     this.renderTreeChart();
   }
 
@@ -126,7 +136,7 @@ export class D3TreeComponent implements OnInit {
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight)
       .append("g")
-      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')'); // shifts the trr graph to right
+      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
     // declares a tree layout and assigns the size
     this.tree = d3.tree()
@@ -154,16 +164,38 @@ export class D3TreeComponent implements OnInit {
     this.updateChart(d);
   }
 
-  mouseover(d: any) {
-    return this.tooltip.style("visibility", "visible")
+  showCustomMenu(node: any) {
+    let element = this.chartContainer.nativeElement;
+    const customMenu = document.getElementById('customMenu');
+    const menuPosition = { x: node.x0, y: node.y0 };
+    // customMenu!.style.left = `${menuPosition.y}px`;
+    // customMenu!.style.top = `${menuPosition.x}px`;
+    customMenu!.style.display = 'block';
+    this.nodeName = node.data.name;
+    this.nodeValue = node.data.value;
+    if (node.hasOwnProperty('children')) {
+      node.children.forEach((nodes: any) => {
+        this.connectedNodess.push(nodes.data.name);
+        this.connectedNodes = this.connectedNodess.join(',')
+      });
+      this.children = true;
+    }
+    else {
+      this.children = false
+      this.nodeName = node.data.name;
+      this.nodeValue = node.data.value;
+    }
   }
 
-  mouseout(d: any) {
-    return this.tooltip.style("visibility", "hidden")
+  hideCustomMenu(node: any) {
+    const customMenu = document.getElementById('customMenu');
+    customMenu!.style.display = 'none';
+    if (node.hasOwnProperty('children')) {
+      node.children.forEach((nodes: any) => {
+        this.connectedNodess.pop();
+      });
+    }
   }
-
-  name: any;
-  value: any;
 
   updateChart(source: any) {
     let i = 0;
@@ -172,21 +204,7 @@ export class D3TreeComponent implements OnInit {
     this.nodes = this.treeData.descendants();
     this.links = this.treeData.descendants().slice(1);
     this.nodes.forEach((d) => { d.y = d.depth * 180 });
-    // TOOLTIP
-    this.nodes.filter((d) => {
-      this.name = d.data.name,
-        this.value = d.value
-      this.tooltip = d3.select("#chart")
-        .append("div")
-        .style("position", "absolute")
-        .style("visibility", "hidden")
-        .html(
-          "<table style='font-size: 10px; font-family: sans-serif; width: 100px; height: 30px'>" +
-          "<tr><td>Name: </td><td>" + this.name + "</td></tr>" +
-          "<tr><td>Value: </td><td>" + this.value + "</td></tr>" +
-          "</table>"
-        );
-    });
+
     let node = this.svg
       .selectAll('g.node')
       .data(this.nodes, (d: any) => { return d.id || (d.id = ++i); });
@@ -196,13 +214,21 @@ export class D3TreeComponent implements OnInit {
       .attr('class', 'node')
       .attr('transform', (d: any) => { return 'translate(' + source.y0 + ',' + source.x0 + ')' })
       .on('click', this.click)
-      .on("mouseover", () => { return this.tooltip.style("visibility", "visible") })
-      .on("mouseout", () => { return this.tooltip.style("visibility", "hidden") })
+      .on('mouseover', (d: any) => {
+        this.showCustomMenu(d); // Show the custom menu on mouseover
+      })
+      .on('mouseout', (d: any) => {
+        this.hideCustomMenu(d); // Hide the custom menu on mouseout
+      });
+
 
     nodeEnter.append('circle')
       .attr("id", "customTooltip")
       .attr('class', 'node')
       .attr('r', 1e-6)
+      .attr('matTooltip', (d: any) => d.data.name)
+      .attr('matTooltipPosition', 'above')
+      .text((d: any) => d.data.name)
       .style('fill', (d: any) => {
         return d._children ? 'lightsteelblue' : '#fff';
       });
@@ -228,8 +254,15 @@ export class D3TreeComponent implements OnInit {
 
     nodeUpdate.select('circle.node')
       .attr('r', 8)
-      .style('stroke-width', '2px')
-      .style('stroke', 'orange')
+      .style('stroke-width', '3px')
+      .style('stroke', (d: any) => {
+        if (d.data.value > 100) {
+          return d ? 'red' : '#fff';
+        }
+        else {
+          return d ? 'orange' : '#fff'
+        }
+      })
       .style('fill', (d: any) => { return d._children ? 'lightsteelblue' : '#fff' })
       .attr('cursor', 'pointer');
 

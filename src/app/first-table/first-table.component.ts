@@ -22,6 +22,8 @@ export class FirstTableComponent implements OnInit {
   newDateArray: any[] = [];
   button1Active: boolean = false;
   button2Active: boolean = false;
+  trueButton: boolean = false;
+  falseButton: boolean = true;
   p: any;
   searchText: any;
   startDates!: Date;

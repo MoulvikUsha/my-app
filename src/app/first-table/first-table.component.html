@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <div class="dataTable">
+    <!-- <div class="dataTable"> -->
         <div class="header">
             <div class="row">
                 <div class="col-sm-3">
@@ -8,19 +8,21 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="chips">
-                        <button class="btn btn-light true" [class.active]="button1Active"
+                        <!-- <button class="btn btn-light true" [class.active]="button1Active"
                             (click)="activateButton(true)">True</button>
                         <button class="btn btn-light false" [class.active]="button2Active"
-                            (click)="activateButton(false)">False</button>
+                            (click)="activateButton(false)">False</button> -->
+                            <div class="btn-group completed" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary trueBut" [class.active]="button1Active" (click)="activateButton(true)">True</button>
+                                <button type="button" class="btn btn-outline-primary" [class.active]="button2Active" (click)="activateButton(false)">False</button>
+                            </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <mat-form-field>
                         <mat-date-range-input [rangePicker]="picker">
-                            <input matStartDate (dateChange)="onDateRangeChange()"
-                                [(ngModel)]="startDates">
-                            <input matEndDate (dateChange)="onDateRangeChange()"
-                                [(ngModel)]="endDates">
+                            <input matStartDate (dateChange)="onDateRangeChange()" [(ngModel)]="startDates">
+                            <input matEndDate (dateChange)="onDateRangeChange()" [(ngModel)]="endDates">
                         </mat-date-range-input>
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-date-range-picker #picker></mat-date-range-picker>
@@ -56,7 +58,14 @@
                 <tr *ngFor="let item of collection | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" cdkDrag>
                     <td>{{item.id}}</td>
                     <td>{{item.title}}</td>
-                    <td>{{item.completed}}</td>
+                    <td>
+                        <!-- <div class="btn-group completed" role="group" aria-label="Basic outlined example">
+                            <button type="button" class="btn btn-outline-primary trueBut"
+                                [class.active]="trueButton">True</button>
+                            <button type="button" class="btn btn-primary" [class.active]="falseButton">False</button>
+                        </div> -->
+                        {{item.completed}}
+                    </td>
                     <td>{{item.date}}</td>
                     <td class="edit" (click)="editRow(item)" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <span class="material-symbols-outlined">edit</span>
@@ -79,7 +88,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <!-- MODAL FORM -->
@@ -107,7 +116,7 @@
                         <!-- <input type="date" class="form-control" formControlName="date" placeholder="Enter date"> -->
                         <mat-form-field class="form-control date">
                             <input matInput [matDatepicker]="pickerr" formControlName="date">
-                            <mat-datepicker-toggle  [for]="pickerr"></mat-datepicker-toggle>
+                            <mat-datepicker-toggle [for]="pickerr"></mat-datepicker-toggle>
                             <mat-datepicker #pickerr></mat-datepicker>
                         </mat-form-field>
                         <div class="error"
@@ -118,7 +127,8 @@
                     <br>
                     <div>
                         <label for="active">{{activity}}</label>&nbsp;&nbsp;
-                        <mat-slide-toggle id="active" formControlName="active" (change)="onToggleChange($event)"></mat-slide-toggle>
+                        <mat-slide-toggle id="active" formControlName="active"
+                            (change)="onToggleChange($event)"></mat-slide-toggle>
                     </div>
                     <hr>
                     <button class="btn btn-success submit" type="submit" [disabled]="editForm.invalid">Submit</button>

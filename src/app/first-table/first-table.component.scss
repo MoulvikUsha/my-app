@@ -131,9 +131,7 @@
 }
 
 tbody tr td button {
-    border-radius: 20px;
-    width: 15%;
-    border: none;
+    width: 100%;
 }
 
 .button-active {
@@ -159,8 +157,6 @@ button.active {
 
 .chips {
     margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
 
     .true {
         border-radius: 15px;
@@ -182,8 +178,8 @@ button.active {
 
     span {
         position: relative;
-        left: 35px;
-        top: 11px;
+        left: 30px;
+        top: 5px;
         font-size: 30px;
     }
 }
@@ -278,4 +274,9 @@ table {
 .error {
     color: red;
     font-size: 12px;
+}
+
+.completed {
+    display: flex;
+    justify-content: space-between;
 }

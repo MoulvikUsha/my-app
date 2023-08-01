@@ -1,3 +1,13 @@
 <b class="dTree d-flex justify-content-center">D3-Tree-Graph</b>
 <br>
 <div class="d3-chart container" id="chart" #chart></div>
+<!-- HTML code for custom menu -->
+<div id="customMenu" class="custom-menu">
+    <div id="customMenu">
+        <p class="nodeName">Name:&nbsp;{{nodeName}}</p>
+        <p class="nodeValue">Value:&nbsp;{{nodeValue}}</p>
+        <p class="connectedNodes" *ngIf="children">
+            Linked nodes:&nbsp; {{connectedNodes}}
+        </p>
+    </div>
+</div>
