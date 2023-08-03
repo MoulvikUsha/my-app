@@ -155,7 +155,7 @@ export class FirstTableComponent implements OnInit {
   }
 
   convertToDateObject(dateStr: any): Date {
-    const parts = dateStr.split('/');
+    const parts = dateStr.split('-');
     const day = parseInt(parts[0], 10);
     const month = parseInt(parts[1], 10) - 1; // Month is zero-based in JavaScript Date object
     const year = parseInt(parts[2], 10);
