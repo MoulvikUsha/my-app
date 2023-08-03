@@ -1,97 +1,98 @@
 <div class="container mt-3">
     <!-- <div class="dataTable"> -->
-        <div class="header">
-            <div class="row">
-                <div class="col-sm-3">
-                    <input class="form-control" type="search" placeholder="Search from Data List"
-                        [(ngModel)]="searchText" (input)="performFilter(searchText)">
-                </div>
-                <div class="col-sm-4">
-                    <div class="chips">
-                        <!-- <button class="btn btn-light true" [class.active]="button1Active"
+    <div class="header">
+        <div class="row">
+            <div class="col-sm-3">
+                <input class="form-control" type="search" placeholder="Search from Data List" [(ngModel)]="searchText"
+                    (input)="performFilter(searchText)">
+            </div>
+            <div class="col-sm-4">
+                <div class="chips">
+                    <!-- <button class="btn btn-light true" [class.active]="button1Active"
                             (click)="activateButton(true)">True</button>
                         <button class="btn btn-light false" [class.active]="button2Active"
                             (click)="activateButton(false)">False</button> -->
-                            <div class="btn-group completed" role="group" aria-label="Basic outlined example">
-                                <button type="button" class="btn btn-outline-primary trueBut" [class.active]="button1Active" (click)="activateButton(true)">True</button>
-                                <button type="button" class="btn btn-outline-primary" [class.active]="button2Active" (click)="activateButton(false)">False</button>
-                            </div>
+                    <div class="btn-group completed" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-outline-primary trueBut" [class.active]="button1Active"
+                            (click)="activateButton(true)">True</button>
+                        <button type="button" class="btn btn-outline-primary" [class.active]="button2Active"
+                            (click)="activateButton(false)">False</button>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <mat-form-field>
-                        <mat-date-range-input [rangePicker]="picker">
-                            <input matStartDate (dateChange)="onDateRangeChange()" [(ngModel)]="startDates">
-                            <input matEndDate (dateChange)="onDateRangeChange()" [(ngModel)]="endDates">
-                        </mat-date-range-input>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-date-range-picker #picker></mat-date-range-picker>
-                    </mat-form-field>
-                </div>
-                <div class="col-sm-2">
-                    <button (click)="openDialog()" class="btn btn-success add">Add New Record</button>
-                </div>
+            </div>
+            <div class="col-sm-3">
+                <mat-form-field>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate (dateChange)="onDateRangeChange()" [(ngModel)]="startDates">
+                        <input matEndDate (dateChange)="onDateRangeChange()" [(ngModel)]="endDates">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-2">
+                <button (click)="openDialog()" class="btn btn-success add">Add Record</button>
             </div>
         </div>
-        <hr>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col" (click)="sortTable('id')">
-                        ID
-                        <i class="material-icons">
-                            {{ getSortIcon('id') }}
-                        </i>
-                    </th>
-                    <th scope="col" (click)="sortTable('title')">
-                        Title
-                        <i class="material-icons">
-                            {{ getSortIcon('title') }}
-                        </i>
-                    </th>
-                    <th scope="col">Completed or Not</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Edit</th>
-                </tr>
-            </thead>
-            <tbody cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                <tr *ngFor="let item of collection | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" cdkDrag>
-                    <td>{{item.id}}</td>
-                    <td>{{item.title}}</td>
-                    <td>
-                        <!-- <div class="btn-group completed" role="group" aria-label="Basic outlined example">
-                            <button type="button" class="btn btn-outline-primary trueBut"
-                                [class.active]="trueButton">True</button>
-                            <button type="button" class="btn btn-primary" [class.active]="falseButton">False</button>
-                        </div> -->
-                        {{item.completed}}
-                    </td>
-                    <td>{{item.date}}</td>
-                    <td class="edit" (click)="editRow(item)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <span class="material-symbols-outlined">edit</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="paginator">
-            <div class="row">
-                <div class="col-sm-10">
-                    <pagination-controls (pageChange)="p = $event" class="pagination"></pagination-controls>
-                </div>
-                <div class="col-sm-2 select">
-                    <span class="material-symbols-outlined">arrow_drop_down</span>
-                    <select name="" id="" class="form-control values" (change)="onSelectChange($event.target)">
-                        <option value="10">10 per page</option>
-                        <option value="50">50 per page</option>
-                        <option value="100">100 per page</option>
-                    </select>
-                </div>
+    </div>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" (click)="sortTable('id')">
+                    ID
+                    <i class="material-icons">
+                        {{ getSortIcon('id') }}
+                    </i>
+                </th>
+                <th scope="col" (click)="sortTable('title')">
+                    Title
+                    <i class="material-icons">
+                        {{ getSortIcon('title') }}
+                    </i>
+                </th>
+                <th scope="col">Completed or Not</th>
+                <th scope="col">Date</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <tr *ngFor="let item of collection | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" cdkDrag>
+                <td>{{item.id}}</td>
+                <td>
+                    <input class="form-control" type="text" [value]="editableRow === item ?item.title : item.title" [readonly]="editableRow !== item"/>
+                    <!-- {{item.title}} -->
+                </td>
+                <td>
+                    <input class="form-control" type="text" [value]="editableRow === item ?item.completed : item.completed" [readonly]="editableRow !== item"/>
+                    <!-- {{item.completed}} -->
+                </td>
+                <td>{{item.date}}</td>
+                <td class="edit" (click)="editRow(item)">
+                    <span class="material-symbols-outlined">edit</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <div class="row">
+            <div class="col-sm-10">
+                <pagination-controls (pageChange)="p = $event" class="pagination"></pagination-controls>
+            </div>
+            <div class="col-sm-2 select">
+                <span class="material-symbols-outlined">arrow_drop_down</span>
+                <select name="" id="" class="form-control values" (change)="onSelectChange($event.target)">
+                    <option value="10">10 per page</option>
+                    <option value="50">50 per page</option>
+                    <option value="100">100 per page</option>
+                </select>
             </div>
         </div>
+    </div>
     <!-- </div> -->
 </div>
 
-<!-- MODAL FORM -->
+<!-- MODAL FORM data-bs-toggle="modal" data-bs-target="#exampleModal" select this and put in edit button to edit the row. -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

@@ -34,7 +34,8 @@ export class FirstTableComponent implements OnInit {
   isButtonActive: boolean = true;
   editForm!: FormGroup;
   activity: string = 'Active';
-  
+  editableRow: any;
+
   constructor(private http: HttpClient, public dialog: MatDialog, private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -95,7 +96,7 @@ export class FirstTableComponent implements OnInit {
 
   // DRAG AND DROP
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.collection, event.previousIndex, event.currentIndex);
+    // moveItemInArray(this.collection, event.previousIndex, event.currentIndex);
   }
 
   // DATA SELECTION on TRUE/FALSE
@@ -171,6 +172,7 @@ export class FirstTableComponent implements OnInit {
 
   // EDIT ROWS
   editRow(item: any) {
+    this.editableRow = item;
     this.editForm.patchValue(item);
     const selectedDate = moment(item.date, 'DD-MM-YYYY').format();
     this.editForm.get('date')?.patchValue(selectedDate);
