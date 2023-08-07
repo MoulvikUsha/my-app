@@ -1,0 +1,16 @@
+.login {
+    border: 1px inset black;
+    padding: 15px;
+}
+
+.pass {
+    display: flex;
+    justify-content: space-around;
+
+    span {
+        position: relative;
+        top: 10px;
+        right: 30px;
+        cursor: pointer;
+    }
+}

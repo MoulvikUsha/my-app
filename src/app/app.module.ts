@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FirstTableComponent } from './first-table/first-table.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,13 +21,17 @@ import { DialogComponentComponent } from './dialog-component/dialog-component.co
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { D3TreeComponent } from './d3-tree/d3-tree.component';
 import { NgxPopperModule } from 'ngx-popper';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstTableComponent,
     DialogComponentComponent,
-    D3TreeComponent
+    D3TreeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,11 @@ import { NgxPopperModule } from 'ngx-popper';
     MatSlideToggleModule,
     NgxPopperModule
   ],
-  providers: [],
+  providers: [AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

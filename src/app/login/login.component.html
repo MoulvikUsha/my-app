@@ -1,0 +1,24 @@
+<div class="container mt-3">
+    <div class="login">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">Username</label>
+                <input type="text" class="form-control" formControlName="userName" placeholder="Enter User Name">
+            </div>
+            <br>
+            <div>
+                <label for="active">Password</label>
+                <div class="pass">
+                    <input type="{{ isPasswordVisible ? 'text' : 'password' }}" class="form-control"
+                        formControlName="password" placeholder="Enter Password">
+                    <span class="material-symbols-outlined" (click)="showPassword()"
+                        *ngIf="isPasswordVisible == false">visibility_off</span>
+                    <span class="material-symbols-outlined" (click)="showPassword()"
+                        *ngIf="isPasswordVisible == true">visibility</span>
+                </div>
+            </div>
+            <hr>
+            <button class="btn btn-success submit" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
