@@ -22,7 +22,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { D3TreeComponent } from './d3-tree/d3-tree.component';
 import { NgxPopperModule } from 'ngx-popper';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './auth.service';
 
 @NgModule({

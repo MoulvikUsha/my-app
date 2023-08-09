@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FirstTableComponent } from './first-table/first-table.component';
 import { D3TreeComponent } from './d3-tree/d3-tree.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {

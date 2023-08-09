@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponentComponent } from '../dialog-component/dialog-component.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-first-table',
@@ -36,7 +37,7 @@ export class FirstTableComponent implements OnInit {
   activity: string = 'Active';
   editableRow: any;
 
-  constructor(private http: HttpClient, public dialog: MatDialog, private fb: FormBuilder) { }
+  constructor(private http: HttpClient, public dialog: MatDialog, private fb: FormBuilder, public authService: AuthService) { }
 
   ngOnInit() {
     this.getJson();
@@ -46,6 +47,10 @@ export class FirstTableComponent implements OnInit {
       date: ['', [Validators.required]],
       active: ['']
     });
+    this.authService.first().subscribe((res: any) => {
+      console.log('res:', res);
+      
+    })
   }
 
   getJson() {
@@ -133,7 +138,7 @@ export class FirstTableComponent implements OnInit {
           const currentDate = moment(this.randomDate).format('DD-MM-YYYY')
           element.date = currentDate
         })
-      }, 500);
+      }, 150);
     }
   }
   getRandomDate(): Date {
