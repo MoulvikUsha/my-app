@@ -1,7 +1,7 @@
 {
   "user": [
     {
-      "id": "admin",
+      "id": "moulvik",
       "name": "Mouvlik",
       "email": "naanumoulvik@gmail.com",
       "role": "admin",
@@ -9,43 +9,51 @@
       "isActive": true
     },
     {
-      "id": "manager",
-      "name": "asrtyui",
-      "email": "asdfgh@gmail.com",
-      "role": "manager",
-      "password": "qwertyuiop",
-      "isActive": false
-    },
-    {
-      "id": "employee",
-      "name": "qwertyui",
-      "email": "qwertui@gmail.com",
-      "role": "employee",
-      "password": "qwertyuiop",
-      "isActive": true
-    },
-    {
-      "id": "manager",
-      "name": "zxcvbnm",
-      "email": "zxcvbnm@gmail.com",
-      "role": "manager",
-      "password": "qwertyuiop",
-      "isActive": true
-    },
-    {
-      "id": "qwertyui",
-      "name": "qqwertyu",
-      "email": "qwertyu@gmail.com",
-      "role": "employee",
-      "password": "qwertyuiop",
-      "isActive": true
-    },
-    {
-      "id": "asdfghjkl",
-      "name": "asdfghjkl",
-      "email": "asdfghjkl@gmail.com",
+      "id": "pranjan",
+      "name": "Pranjan",
+      "email": "pranjanbm@gmail.com",
       "role": "admin",
       "password": "asdfghjkl",
+      "isActive": true
+    },
+    {
+      "id": "pragathi",
+      "name": "Pragathi",
+      "email": "pragathi@gmail.com",
+      "role": "manager",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "bhuvana",
+      "name": "Bhuvana",
+      "email": "bhuvana@gmail.com",
+      "role": "employee",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "monica",
+      "name": "Monica",
+      "email": "monica@gmail.com",
+      "role": "manager",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "shamanth",
+      "name": "Shamanth",
+      "email": "shamanth@gmail.com",
+      "role": "employee",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "shreyas",
+      "name": "Shreyas",
+      "email": "shreyas@gmail.com",
+      "role": "admin",
+      "password": "qwertyuiop",
       "isActive": true
     },
     {
@@ -53,16 +61,8 @@
       "name": "qqqqqqqqqqq",
       "email": "qqqqqqq@gmai.com",
       "role": "manager",
-      "password": "qqqqqq",
+      "password": "qwertyuiop",
       "isActive": false
-    },
-    {
-      "id": "pranjan",
-      "name": "Pranjan",
-      "email": "pranjanbm@gmail.com",
-      "role": "manager",
-      "password": "asdfghjkl",
-      "isActive": true
     }
   ],
   "roles": [
