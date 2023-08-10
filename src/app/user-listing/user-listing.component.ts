@@ -33,9 +33,9 @@ export class UserListingComponent implements OnInit {
 
   updateUser(id: any) {
     const popup = this.dialog.open(UpdatePopupComponent, {
-      // data: {
-      //   usercode: id,
-      // }
+      data: {
+        userId: id,
+      }
     });
 
     popup.afterClosed().subscribe(res => {

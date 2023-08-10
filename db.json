@@ -47,6 +47,22 @@
       "role": "admin",
       "password": "asdfghjkl",
       "isActive": true
+    },
+    {
+      "id": "qqq",
+      "name": "qqqqqqqqqqq",
+      "email": "qqqqqqq@gmai.com",
+      "role": "manager",
+      "password": "qqqqqq",
+      "isActive": false
+    },
+    {
+      "id": "pranjan",
+      "name": "Pranjan",
+      "email": "pranjanbm@gmail.com",
+      "role": "manager",
+      "password": "asdfghjkl",
+      "isActive": true
     }
   ],
   "roles": [
