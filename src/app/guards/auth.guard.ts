@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     if (this.authservice.isLoggedIn()) {
       if (route.url.length > 0) {
         let path = route.url[0].path;
-        if (path == 'user') {
+        if (path == 'users') {
           if (this.authservice.getUserRole() == 'admin') {
             return true
           }

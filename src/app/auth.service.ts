@@ -38,7 +38,7 @@ export class AuthService implements HttpInterceptor {
     return this.http.get(this.apiUrl);
   }
 
-  getById(id: any) {
+  getUserById(id: any) {
     return this.http.get(this.apiUrl + '/' + id)
   }
 

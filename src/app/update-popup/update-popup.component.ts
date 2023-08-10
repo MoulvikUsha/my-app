@@ -33,7 +33,7 @@ export class UpdatePopupComponent implements OnInit {
       this.roleList = res;
 
       if (this.data.userId != null && this.data.userId != '') {
-        this.authService.getById(this.data.userId).subscribe(res => {
+        this.authService.getUserById(this.data.userId).subscribe(res => {
           this.editData = res;
           this.registerForm.patchValue({
             id: this.editData.id,

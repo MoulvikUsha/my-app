@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
       // })
 
       if (this.loginForm.valid) {
-        this.authService.getById(this.loginForm.value.userName).subscribe(res => {
-          this.userData = res;          
+        this.authService.getUserById(this.loginForm.value.userName).subscribe(res => {
+          this.userData = res;
           if (this.userData.password == this.loginForm.value.password) {
             if (this.userData.isActive) {
               sessionStorage.setItem('username', this.userData.id);
