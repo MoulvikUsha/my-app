@@ -1,0 +1,45 @@
+<div class="container mt-3">
+    <div class="register">
+        <h2 id="register">Register Form</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">User Name</label>
+                <input type="text" class="form-control" formControlName="id" placeholder="Enter User Name">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="title">Name</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="Enter User Name">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="title">Email</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="Enter Email">
+            </div>
+            <br>
+            <div>
+                <label for="active">Password</label>
+                <div class="pass">
+                    <input type="{{ isPasswordVisible ? 'text' : 'password' }}" class="form-control"
+                        formControlName="password" placeholder="Enter Password">
+                    <span class="material-symbols-outlined" (click)="showPassword()"
+                        *ngIf="isPasswordVisible == false">visibility_off</span>
+                    <span class="material-symbols-outlined" (click)="showPassword()"
+                        *ngIf="isPasswordVisible == true">visibility</span>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="title">Role</label>
+                <select class="form-select" aria-label="Default select example" formControlName="role">
+                    <option selected disabled>Open this select menu</option>
+                    <option value="admin">Admin</option>
+                    <option value="manager">Manager</option>
+                    <option value="employee">Employee</option>
+                  </select>
+            </div>
+            <hr>
+            <button class="btn btn-success submit" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

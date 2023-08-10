@@ -1,0 +1,66 @@
+{
+  "user": [
+    {
+      "id": "admin",
+      "name": "Mouvlik",
+      "email": "naanumoulvik@gmail.com",
+      "role": "admin",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "manager",
+      "name": "asrtyui",
+      "email": "asdfgh@gmail.com",
+      "role": "manager",
+      "password": "qwertyuiop",
+      "isActive": false
+    },
+    {
+      "id": "employee",
+      "name": "qwertyui",
+      "email": "qwertui@gmail.com",
+      "role": "employee",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "manager",
+      "name": "zxcvbnm",
+      "email": "zxcvbnm@gmail.com",
+      "role": "manager",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "qwertyui",
+      "name": "qqwertyu",
+      "email": "qwertyu@gmail.com",
+      "role": "employee",
+      "password": "qwertyuiop",
+      "isActive": true
+    },
+    {
+      "id": "asdfghjkl",
+      "name": "asdfghjkl",
+      "email": "asdfghjkl@gmail.com",
+      "role": "admin",
+      "password": "asdfghjkl",
+      "isActive": true
+    }
+  ],
+  "roles": [
+    {
+      "id": "admin",
+      "name": "Admin"
+    },
+    {
+      "id": "manager",
+      "name": "Manager"
+    },
+    {
+      "id": "employee",
+      "name": "Employee"
+    }
+  ]
+}

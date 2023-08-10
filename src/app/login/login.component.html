@@ -1,5 +1,6 @@
 <div class="container mt-3">
     <div class="login">
+        <h2 id="login">Login Form</h2>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="title">Username</label>
@@ -18,7 +19,10 @@
                 </div>
             </div>
             <hr>
-            <button class="btn btn-success submit" type="submit">Submit</button>
+            <div class="finalSubmit">
+                <button class="btn btn-success submit" type="submit">Submit</button>
+                <p class="newUser" routerLink="/register">New User? <button class="btn btn-light" type="submit">Register</button></p>
+            </div>
         </form>
     </div>
 </div>

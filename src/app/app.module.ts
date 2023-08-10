@@ -24,6 +24,14 @@ import { NgxPopperModule } from 'ngx-popper';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './auth.service';
+import { ToastrModule } from 'ngx-toastr';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { UserListingComponent } from './user-listing/user-listing.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { UpdatePopupComponent } from './update-popup/update-popup.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -31,7 +39,11 @@ import { AuthService } from './auth.service';
     FirstTableComponent,
     DialogComponentComponent,
     D3TreeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    UserListingComponent,
+    UpdatePopupComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +62,11 @@ import { AuthService } from './auth.service';
     MatDialogModule,
     MatButtonModule,
     MatSlideToggleModule,
-    NgxPopperModule
+    NgxPopperModule,
+    ToastrModule.forRoot(),
+    MatTableModule,
+    MatPaginatorModule,
+    MatCheckboxModule
   ],
   providers: [AuthGuard, {
     provide: HTTP_INTERCEPTORS,

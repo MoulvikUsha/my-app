@@ -1,0 +1,17 @@
+<div class="container mt-3">
+    <div class="register">
+        <h2 id="register">Register Form</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">Role</label>
+                <select class="form-select" aria-label="Default select example" formControlName="role">
+                    <option  value="" disabled selected>Select</option>
+                    <option *ngFor="let role of roleList" value="{{role.id}}">{{role.name}}</option>
+                </select>
+            </div>
+            <mat-checkbox class="example-margin" formControlName="isActive">Is Active</mat-checkbox>
+            <hr>
+            <button class="btn btn-success submit" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
