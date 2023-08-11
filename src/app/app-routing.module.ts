@@ -9,11 +9,11 @@ import { HomeComponent } from './home/home.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: 'first',
     component: FirstTableComponent,

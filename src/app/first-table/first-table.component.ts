@@ -47,10 +47,6 @@ export class FirstTableComponent implements OnInit {
       date: ['', [Validators.required]],
       active: ['']
     });
-    this.authService.first().subscribe((res: any) => {
-      console.log('res:', res);
-      
-    })
   }
 
   getJson() {

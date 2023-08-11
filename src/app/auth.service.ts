@@ -19,10 +19,6 @@ export class AuthService implements HttpInterceptor {
   //   return !!localStorage.getItem('accessToken');
   // }
 
-  first() {
-    return this.http.get(`http://localhost:3000/first`)
-  }
-
   intercept(req: any, next: any): Observable<HttpEvent<any>> {
     let tokenn = localStorage.getItem('accessToken');
     let tokenisedReq = req.clone({
