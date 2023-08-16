@@ -1,4 +1,3 @@
-<p id="lorem">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam, ad!</p>
 <div class="container mt-3">
     <div class="header">
         <div class="row">
@@ -56,11 +55,14 @@
             <tr *ngFor="let item of collection | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" cdkDrag>
                 <td>{{item.id}}</td>
                 <td>
-                    <input class="form-control" type="text" [value]="editableRow === item ?item.title : item.title" [readonly]="editableRow !== item"/>
+                    <input class="form-control" type="text" [value]="editableRow === item ?item.title : item.title"
+                        [readonly]="editableRow !== item" />
                     <!-- {{item.title}} -->
                 </td>
                 <td>
-                    <input class="form-control" type="text" [value]="editableRow === item ?item.completed : item.completed" [readonly]="editableRow !== item"/>
+                    <input class="form-control" type="text"
+                        [value]="editableRow === item ?item.completed : item.completed"
+                        [readonly]="editableRow !== item" />
                     <!-- {{item.completed}} -->
                 </td>
                 <td>{{item.date}}</td>

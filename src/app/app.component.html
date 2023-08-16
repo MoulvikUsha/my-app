@@ -11,7 +11,16 @@
                     <a class="nav-link active" routerLink="home">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" routerLink="dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" routerLink="users" *ngIf="isAdmin">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="first" *ngIf="isAdmin">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="d3-tree" *ngIf="isAdmin">D3-Tree Graph</a>
                 </li>
             </ul>
             <div class="nav-item logout">

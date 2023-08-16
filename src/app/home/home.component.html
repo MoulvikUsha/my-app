@@ -1,4 +1,6 @@
 <div class="home-container">
+    <button class="btn btn-light" (click)="reStart()">Start Tour</button>
+    <br><br>
     <header class="header">
         <h1>Welcome to Our Website</h1>
         <p>Explore the amazing features we offer.</p>
@@ -40,7 +42,6 @@
     </div>
     <footer class="footer">
         <p>&copy; 2023 YourCompany. All rights reserved.</p>
-        <button (click)="reStart()">Restart Tour</button>
     </footer>
 
     <ng-template #customContent let-person="name">This is Home Page first step</ng-template>

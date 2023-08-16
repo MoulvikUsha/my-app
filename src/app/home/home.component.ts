@@ -16,11 +16,11 @@ export class HomeComponent implements OnInit {
   constructor(public router: Router, public authService: AuthService, public path: AuthGuard, public joyrideService: JoyrideService) { }
 
   ngOnInit(): void {
-    this.joyrideService.startTour({
-      steps: ['firstStep@home', 'secondStep@home', 'thirdStep@users', 'fourthStep@dashboard', 'd3Step@d3-tree'],
-      stepDefaultPosition: 'bottom',
-      themeColor: '#9b9b9b'
-    });
+    // this.joyrideService.startTour({
+    //   steps: ['firstStep@home', 'secondStep@home', 'thirdStep@users', 'fourthStep@dashboard', 'd3Step@d3-tree'],
+    //   stepDefaultPosition: 'bottom',
+    //   themeColor: '#9b9b9b'
+    // });
   }
 
   reStart() {
