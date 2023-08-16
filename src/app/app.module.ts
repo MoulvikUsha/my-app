@@ -20,7 +20,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogComponentComponent } from './dialog-component/dialog-component.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { D3TreeComponent } from './d3-tree/d3-tree.component';
-import { NgxPopperModule } from 'ngx-popper';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './auth.service';
@@ -65,7 +64,6 @@ import { JoyrideModule } from 'ngx-joyride';
     MatDialogModule,
     MatButtonModule,
     MatSlideToggleModule,
-    NgxPopperModule,
     ToastrModule.forRoot(),
     MatTableModule,
     MatPaginatorModule,
