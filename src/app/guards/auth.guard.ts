@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthGuard implements CanActivate {
 
+  path: any;
+
   constructor(private authservice: AuthService, private router: Router, private toastr: ToastrService) {
     // sessionStorage.clear();
   }
@@ -17,8 +19,8 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authservice.isLoggedIn()) {
       if (route.url.length > 0) {
-        let path = route.url[0].path;
-        if (path == 'users') {
+        this.path = route.url[0].path;
+        if (this.path == 'users') {
           if (this.authservice.getUserRole() == 'admin') {
             return true
           }

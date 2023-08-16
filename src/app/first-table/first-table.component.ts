@@ -134,7 +134,7 @@ export class FirstTableComponent implements OnInit {
           const currentDate = moment(this.randomDate).format('DD-MM-YYYY')
           element.date = currentDate
         })
-      }, 150);
+      }, 10);
     }
   }
   getRandomDate(): Date {

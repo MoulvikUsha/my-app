@@ -5,22 +5,44 @@
     </header>
     <section class="features">
         <div class="feature">
-            <i class="fa fa-globe"></i>
+            <i id="globe"></i>
             <h2>Global Reach</h2>
             <p>Connect with users from around the world.</p>
         </div>
         <div class="feature">
-            <i class="fa fa-cogs"></i>
+            <i id="cogs"></i>
             <h2>Advanced Settings</h2>
             <p>Customize your experience with powerful settings.</p>
         </div>
         <div class="feature">
-            <i class="fa fa-users"></i>
+            <i id="users"></i>
             <h2>User Community</h2>
             <p>Join our active community and share your thoughts.</p>
         </div>
     </section>
+    <div id="my-element" joyrideStep="firstStep" [stepContent]="customContent">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio eveniet autem iste ipsum,
+        nihil maxime, facilis accusantium perferendis doloribus reiciendis voluptates vitae odit! Consectetur enim velit
+        voluptatibus? Quasi animi in maiores? Nam molestiae fugit earum quidem illum quae ducimus natus, doloribus velit
+        animi illo, vitae aperiam. Harum porro, est sed rem sapiente eveniet officiis vitae incidunt deserunt eius, laborum
+        aliquam hic dolorum obcaecati error officia! Nostrum, quidem reiciendis suscipit illum fugiat doloribus at
+        aspernatur earum deleniti harum quod necessitatibus. Quisquam adipisci sit perferendis impedit odio velit molestiae
+        accusantium aspernatur dignissimos dolorum? Sed voluptates ad fugit explicabo ipsum unde, laborum accusantium.
+    </div>
+    <br><br><br>
+    <div id="my-other-element" joyrideStep="secondStep" [stepContent]="customContent2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. In voluptas reprehenderit ipsa
+        vitae eum reiciendis, eius animi qui sunt vel repellendus optio omnis neque similique, vero, at asperiores officia?
+        Libero porro ullam at? Dolorum corrupti laudantium ratione, in laboriosam fugiat temporibus autem architecto, illo,
+        accusamus neque reprehenderit. At harum ipsum eaque sit temporibus exercitationem, maxime tenetur vel eum possimus
+        pariatur et voluptates repellendus omnis qui quaerat dicta sed dolorem assumenda accusamus soluta culpa eos error.
+        Cum cupiditate expedita facilis, ut quae quam quasi, odit suscipit, quod rem dolores ipsam vero dolore esse aperiam
+        animi. Eveniet, vitae. Voluptatem repudiandae deleniti porro ab tempore enim laboriosam magni officiis, assumenda
+        illo quos voluptatum ducimus, harum placeat sapiente laudantium nemo perferendis soluta dolore veritatis.
+    </div>
     <footer class="footer">
         <p>&copy; 2023 YourCompany. All rights reserved.</p>
+        <button (click)="reStart()">Start Tour</button>
     </footer>
+
+    <ng-template #customContent let-person="name">This is Home Page first step</ng-template>
+    <ng-template #customContent2 let-person="name">This is Home Page second step</ng-template>
 </div>

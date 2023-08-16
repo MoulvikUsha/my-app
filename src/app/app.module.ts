@@ -32,6 +32,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { UpdatePopupComponent } from './update-popup/update-popup.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { JoyrideModule } from 'ngx-joyride';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RegisterComponent,
     HomeComponent,
     UserListingComponent,
-    UpdatePopupComponent
+    UpdatePopupComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ToastrModule.forRoot(),
     MatTableModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    JoyrideModule.forRoot()
   ],
   providers: [AuthGuard, {
     provide: HTTP_INTERCEPTORS,

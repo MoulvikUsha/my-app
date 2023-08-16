@@ -1,4 +1,6 @@
 <div class="container mt-3">
+    <p class="usersList" joyrideStep="thirdStep" [stepContent]="customContent4">These are the users of the Application</p>
+    <ng-template #customContent4 let-person="name">This is Users list table</ng-template>
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
 

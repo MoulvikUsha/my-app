@@ -13,7 +13,7 @@
       "name": "Pranjan",
       "email": "pranjanbm@gmail.com",
       "role": "admin",
-      "password": "asdfghjkl",
+      "password": "qwertyuiop",
       "isActive": true
     },
     {
@@ -44,7 +44,7 @@
       "id": "shamanth",
       "name": "Shamanth",
       "email": "shamanth@gmail.com",
-      "role": "employee",
+      "role": "admin",
       "password": "qwertyuiop",
       "isActive": true
     },
@@ -63,6 +63,14 @@
       "role": "manager",
       "password": "qwertyuiop",
       "isActive": false
+    },
+    {
+      "id": "SHIVA",
+      "name": "Shankara",
+      "email": "shankara@gmail.com",
+      "role": "employee",
+      "password": "qwertyuiop",
+      "isActive": true
     }
   ],
   "roles": [
