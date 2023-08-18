@@ -8,11 +8,12 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AmChartsComponent } from './am-charts/am-charts.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'amChart',
     pathMatch: 'full'
   },
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
     path: 'users',
     component: UserListingComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'amChart',
+    component: AmChartsComponent
   }
 ];
 

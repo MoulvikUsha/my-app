@@ -33,6 +33,7 @@ import { UpdatePopupComponent } from './update-popup/update-popup.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JoyrideModule } from 'ngx-joyride';
+import { AmChartsComponent } from './am-charts/am-charts.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { JoyrideModule } from 'ngx-joyride';
     HomeComponent,
     UserListingComponent,
     UpdatePopupComponent,
-    DashboardComponent
+    DashboardComponent,
+    AmChartsComponent
   ],
   imports: [
     BrowserModule,
