@@ -35,7 +35,7 @@ export class AmChartsComponent implements OnInit {
     valueAxis.title.text = "Litres sold (M)";
 
     // Chart Series
-    var series = this.chart.series.push(new am4charts.StepLineSeries());
+    let series = this.chart.series.push(new am4charts.StepLineSeries());
     series.dataFields.categoryX = "country";
     series.dataFields.valueY = "litres";
     series.strokeWidth = 3;
@@ -75,14 +75,11 @@ export class AmChartsComponent implements OnInit {
     this.chart.cursor = new am4charts.XYCursor();
     this.chart.scrollbarX = new am4core.Scrollbar();
   }
-  
-  amChartLive() {
-    // Themes begin
-    am4core.useTheme(am4themes_animated);
-    // Themes end
-    this.liveChart = am4core.create("amChartLive", am4charts.XYChart);
-    console.log('this.liveChart:', this.liveChart);
 
+  amChartLive() {
+    am4core.useTheme(am4themes_animated);
+
+    this.liveChart = am4core.create("amChartLive", am4charts.XYChart);
     this.liveChart.hiddenState.properties.opacity = 0;
     this.liveChart.padding(0, 0, 0, 0);
     this.liveChart.zoomOutButton.disabled = true;
@@ -90,7 +87,7 @@ export class AmChartsComponent implements OnInit {
     let data = [];
     let visits = 10;
     let i = 0;
-    for (i = 0; i <= 20; i++) {
+    for (i = 0; i <= 30; i++) {
       visits -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
       data.push({ date: new Date().setSeconds(i - 30), value: visits });
     }
